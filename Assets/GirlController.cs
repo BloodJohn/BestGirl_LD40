@@ -9,8 +9,8 @@ public class GirlController : MonoBehaviour
 
     void Start()
     {
-        var cam = FindObjectOfType<Camera>();
-        planes = GeometryUtility.CalculateFrustumPlanes(cam);
+        var mainCamera = FindObjectOfType<Camera>();
+        planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
         collider = GetComponent<Collider2D>();
     }
 
@@ -26,7 +26,6 @@ public class GirlController : MonoBehaviour
         //если ушла за экран - поворачиваем обратно
         if (!GeometryUtility.TestPlanesAABB(planes, collider.bounds))
         {
-            Debug.LogFormat("hide");
             velocity *= -1;
             pos.x += velocity * Time.deltaTime;
             transform.localPosition = pos;
