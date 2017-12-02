@@ -118,6 +118,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4979168636783256}
   - component: {fileID: 95285210337664546}
+  - component: {fileID: 61480439593808466}
+  - component: {fileID: 114317267775821632}
   m_Layer: 0
   m_Name: Girl_3
   m_TagString: Untagged
@@ -573,7 +575,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1260764640117834}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.76, y: -0.189, z: 0}
+  m_LocalPosition: {x: 0.52919126, y: -1.9372239, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4444263329891918}
@@ -586,6 +588,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61480439593808466
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1260764640117834}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.11124694, y: 0.551785}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.3470905, y: 5.1472864}
+  m_EdgeRadius: 0
 --- !u!95 &95285210337664546
 Animator:
   serializedVersion: 3
@@ -719,6 +746,18 @@ MonoBehaviour:
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 0}
   m_AttachedIK: {fileID: 0}
+--- !u!114 &114317267775821632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1260764640117834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b90a2f9db0c7d43b7c1315b5b84f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 1.1
 --- !u!114 &114382533170525204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1190,8 +1229,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 4524755824324558}
   m_AABB:
-    m_Center: {x: NaN, y: NaN, z: NaN}
-    m_Extent: {x: -Infinity, y: -Infinity, z: -Infinity}
+    m_Center: {x: 0.7544326, y: 0.07117976, z: 0}
+    m_Extent: {x: 0.8898913, y: 0.2511423, z: 0}
   m_DirtyAABB: 0
 --- !u!137 &137979750072810152
 SkinnedMeshRenderer:

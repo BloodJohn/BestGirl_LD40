@@ -17,11 +17,13 @@ public class GirlController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //двигаем даму вправо
         var pos = transform.localPosition;
         pos.x += velocity * Time.deltaTime;
         transform.localPosition = pos;
 
         
+        //если ушла за экран - поворачиваем обратно
         if (!GeometryUtility.TestPlanesAABB(planes, collider.bounds))
         {
             Debug.LogFormat("hide");

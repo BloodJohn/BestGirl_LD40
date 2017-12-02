@@ -201,6 +201,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4351918261081886}
   - component: {fileID: 95173431639705398}
+  - component: {fileID: 61190339032898420}
+  - component: {fileID: 114049685436400516}
   m_Layer: 0
   m_Name: Girl_2
   m_TagString: Untagged
@@ -413,7 +415,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1750415565091470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.11, y: -0.189, z: 0}
+  m_LocalPosition: {x: 1.9754047, y: -2.6597419, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4560333507983148}
@@ -628,6 +630,31 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1372824074685682}
   m_Mesh: {fileID: 43943548587547398, guid: 93c71e28e93d9664c95a5807a27df6a4, type: 2}
+--- !u!61 &61190339032898420
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1750415565091470}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.08466053, y: 0.4938507}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.3668613, y: 5.2894516}
+  m_EdgeRadius: 0
 --- !u!95 &95173431639705398
 Animator:
   serializedVersion: 3
@@ -661,6 +688,18 @@ MonoBehaviour:
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 0}
   m_AttachedIK: {fileID: 0}
+--- !u!114 &114049685436400516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1750415565091470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b90a2f9db0c7d43b7c1315b5b84f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 1
 --- !u!114 &114152544473726080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -689,7 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.7228739
+  m_Length: 0.7228738
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4004452546553364}
   m_AttachedIK: {fileID: 0}
@@ -721,7 +760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.72519326
+  m_Length: 0.72519314
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4928343147053138}
   m_AttachedIK: {fileID: 0}
@@ -1232,6 +1271,6 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 4690210279701850}
   m_AABB:
-    m_Center: {x: NaN, y: NaN, z: NaN}
-    m_Extent: {x: -Infinity, y: -Infinity, z: -Infinity}
+    m_Center: {x: 0.7544326, y: 0.07117976, z: 0}
+    m_Extent: {x: 0.8898913, y: 0.2511423, z: 0}
   m_DirtyAABB: 0

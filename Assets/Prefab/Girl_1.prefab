@@ -984,7 +984,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 43473408792780656, guid: 8e747a8b30605114a9054b8d6e3c3329, type: 2}
   m_Bones:
   - {fileID: 4359455676774306}
   - {fileID: 4577418836183088}
@@ -1032,7 +1032,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 43982123320976068, guid: d62bda8bbe3d86c4f833eb5b897fac7d, type: 2}
   m_Bones:
   - {fileID: 4230255455806494}
   m_BlendShapeWeights: []
@@ -1079,7 +1079,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 43595678750440444, guid: eed21f38213feb845b358083adad621a, type: 2}
   m_Bones:
   - {fileID: 4089044215130236}
   - {fileID: 4159140097202732}
@@ -1127,7 +1127,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 43474591030456120, guid: 1dbc1803b1de6fb42b2358d71ac9ccbf, type: 2}
   m_Bones:
   - {fileID: 4230255455806494}
   m_BlendShapeWeights: []
@@ -1174,7 +1174,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 43036023798964114, guid: 5d76cfcfb802936449d7cde2fa1a5abe, type: 2}
   m_Bones:
   - {fileID: 4655669549220738}
   - {fileID: 4920800923598282}
@@ -1222,7 +1222,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 43837208456950808, guid: 15f1f722f4e3c75458a63bf96c110565, type: 2}
   m_Bones:
   - {fileID: 4400311658120944}
   m_BlendShapeWeights: []
@@ -1269,7 +1269,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 43071471384607160, guid: ead758c39e0ffe84a8c42b3ff33fc66b, type: 2}
   m_Bones:
   - {fileID: 4836973542548244}
   - {fileID: 4668915773504430}
