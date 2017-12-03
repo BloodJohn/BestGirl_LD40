@@ -43,7 +43,7 @@ public class SceneController : MonoBehaviour
         if (isWin) //перезапускаем игру после победы
         {
             if (Input.GetMouseButtonDown(0))
-                StartGame();
+                WinController.WinGame();
             return;
         }
 
