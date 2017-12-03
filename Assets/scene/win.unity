@@ -365,7 +365,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.4
-  m_Text: "Lucky! \nThis is \nthe most \nunique \ngirl ;)"
+  m_Text: "Lucky! \nThis is \nbest\ngirl ;)"
 --- !u!222 &1276687930
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class SceneController : MonoBehaviour
 {
     private const int maxGirl = 20;
-    private const float launchDelay = 3.3f;
+    private const float launchDelay = 2.0011f * 2;
 
     [SerializeField] private GameObject[] prefabList;
     private Camera mainCamera;
@@ -66,6 +66,7 @@ public class SceneController : MonoBehaviour
                 if (girlCount.Values.Sum() < maxGirl)
                 {
                     LaunchGirl();
+                    SoundManager.Instance.PlayHello();
                 }
                 else
                 {
@@ -120,14 +121,18 @@ public class SceneController : MonoBehaviour
         if (uniqueCount > 1) //две и более девушки в меньшинстве
         {
             LaunchGirl(selectGirl.name);
+            LaunchGirl();
+            SoundManager.Instance.PlayHello();
         }
         else if (minCount < girlCount[selectGirl.name]) //это не меньшинство
         {
             LaunchGirl();
+            SoundManager.Instance.PlayHello();
         }
         else //самая неповторимая!
         {
             Debug.LogFormat("win! :)");
+            SoundManager.Instance.PlayYeah();
 
             foreach (var girl in FindObjectsOfType<GirlController>())
                 girl.gameObject.SetActive(false);
