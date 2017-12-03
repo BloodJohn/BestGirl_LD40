@@ -7,12 +7,16 @@ using Random = UnityEngine.Random;
 
 public class SceneController : MonoBehaviour
 {
+    private const int maxGirl = 20;
+    private const float launchDelay = 3f;
+
     [SerializeField] private GameObject[] prefabList;
     private Camera mainCamera;
 
     private readonly Dictionary<string, int> girlCount = new Dictionary<string, int>(4);
 
     private float launchTime;
+    private bool isWin;
 
     public static AsyncOperation StartGame()
     {
@@ -36,6 +40,13 @@ public class SceneController : MonoBehaviour
 
     void Update()
     {
+        if (isWin) //перезапускаем игру после победы
+        {
+            if (Input.GetMouseButtonDown(0))
+                StartGame();
+            return;
+        }
+
         launchTime += Time.deltaTime;
 
         if (Input.GetMouseButtonDown(0))
@@ -44,24 +55,23 @@ public class SceneController : MonoBehaviour
             var hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
             if (hit.transform != null)
             {
-                CheckChange(hit.transform.name);
+                CheckChange(hit.transform.gameObject);
             }
 
         }
         else
         {
-            if (launchTime > 3f) //со временем девушек прибывает
+            if (launchTime > launchDelay) //со временем девушек прибывает
             {
-                if (girlCount.Values.Sum() < 20)
+                if (girlCount.Values.Sum() < maxGirl)
                 {
                     LaunchGirl();
                 }
                 else
                 {
                     Debug.LogFormat("lose! :(");
+                    launchTime = float.MinValue;
                 }
-
-                launchTime = 0;
             }
         }
     }
@@ -69,6 +79,7 @@ public class SceneController : MonoBehaviour
 
     private void LaunchGirl()
     {
+        launchTime = 0;
         if (prefabList.Length <= 0) return;
 
         var index = Random.Range(0, prefabList.Length);
@@ -77,8 +88,8 @@ public class SceneController : MonoBehaviour
         var newGirl = Instantiate(prefab, transform);
         newGirl.name = prefab.name;
 
+        //разбрасываем по экрану
         var pos = new Vector3(Random.Range(-3f, 3f), Random.Range(-8f, 4f), 0);
-        //pos.z = (pos.x + 3f) / 10f;
         newGirl.transform.localPosition = pos;
 
         var controller = newGirl.GetComponent<GirlController>();
@@ -91,19 +102,36 @@ public class SceneController : MonoBehaviour
         girlCount[prefab.name]++;
     }
 
-    private void CheckChange(string name)
+    private void CheckChange(GameObject selectGirl)
     {
         var minCount = girlCount.Values.Min();
+        var uniqueCount = girlCount.Values.Count(g => g == minCount);
 
-        Debug.LogFormat("click {0} ({1}/{2})", name, girlCount[name], minCount);
+        Debug.LogFormat("click {0} ({1}/{2}x{3})", selectGirl.name, girlCount[selectGirl.name], minCount, uniqueCount);
 
-        if (minCount < girlCount[name])
+        if (uniqueCount > 1) //две и более девушки в меньшинстве
         {
             LaunchGirl();
         }
-        else
+        else if (minCount < girlCount[selectGirl.name]) //это не меньшинство
+        {
+            LaunchGirl();
+        }
+        else //самая неповторимая!
         {
             Debug.LogFormat("win! :)");
+
+            foreach (var girl in FindObjectsOfType<GirlController>())
+                girl.gameObject.SetActive(false);
+
+            selectGirl.SetActive(true);
+            isWin = true;
+            return;
+        }
+
+        if (girlCount.Values.Sum() >= maxGirl) //девушек стало слишком ного - начинаем заново!
+        {
+            StartGame();
         }
     }
 }
