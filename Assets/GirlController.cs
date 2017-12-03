@@ -12,6 +12,10 @@ public class GirlController : MonoBehaviour
         var mainCamera = FindObjectOfType<Camera>();
         planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
         collider = GetComponent<Collider2D>();
+
+		var pos = transform.localPosition;
+		pos.z = pos.y ;
+		transform.localPosition = pos;
     }
 
     // Update is called once per frame
@@ -28,7 +32,7 @@ public class GirlController : MonoBehaviour
         {
             TurnRound();
             pos.x += velocity * Time.deltaTime;
-            pos.z = pos.y / 10f;
+            pos.z = pos.y ;
             transform.localPosition = pos;
         }
     }
