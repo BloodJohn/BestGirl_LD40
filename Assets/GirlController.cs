@@ -2,7 +2,7 @@
 
 public class GirlController : MonoBehaviour
 {
-    [SerializeField] private float velocity;
+    public float velocity;
 
     private Plane[] planes;
     private Collider2D collider;
@@ -26,13 +26,19 @@ public class GirlController : MonoBehaviour
         //если ушла за экран - поворачиваем обратно
         if (!GeometryUtility.TestPlanesAABB(planes, collider.bounds))
         {
-            velocity *= -1;
+            TurnRound();
             pos.x += velocity * Time.deltaTime;
+            pos.z = pos.y / 10f;
             transform.localPosition = pos;
-
-            var scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
         }
+    }
+
+    public void TurnRound()
+    {
+        velocity *= -1;
+
+        var scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 }
