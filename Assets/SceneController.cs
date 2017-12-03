@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class SceneController : MonoBehaviour
 {
     private const int maxGirl = 20;
-    private const float launchDelay = 3f;
+    private const float launchDelay = 3.3f;
 
     [SerializeField] private GameObject[] prefabList;
     private Camera mainCamera;
@@ -35,7 +35,7 @@ public class SceneController : MonoBehaviour
             girlCount[girl.name]++;
         }
 
-        for (var i = 0; i < 3; i++) LaunchGirl();
+        for (var i = 0; i < 4; i++) LaunchGirl();
     }
 
     void Update()
@@ -77,12 +77,18 @@ public class SceneController : MonoBehaviour
     }
 
 
-    private void LaunchGirl()
+    private void LaunchGirl(string prefabName = "")
     {
         launchTime = 0;
         if (prefabList.Length <= 0) return;
 
         var index = Random.Range(0, prefabList.Length);
+
+        if (!string.IsNullOrEmpty(prefabName))
+            for (var i = 0; i < prefabList.Length; i++)
+                if (prefabList[i].name == prefabName)
+                    index = i;
+
         var prefab = prefabList[index];
 
         var newGirl = Instantiate(prefab, transform);
@@ -93,10 +99,12 @@ public class SceneController : MonoBehaviour
         newGirl.transform.localPosition = pos;
 
         var controller = newGirl.GetComponent<GirlController>();
-
         controller.velocity = Random.Range(0.8f, 1.4f);
         //идет вправо
         if (Random.value >= 0.5f) controller.TurnRound();
+
+        var animator = newGirl.GetComponent<Animator>();
+        animator.speed = Mathf.Abs(controller.velocity);
 
         if (!girlCount.ContainsKey(prefab.name)) girlCount.Add(prefab.name, 0);
         girlCount[prefab.name]++;
@@ -111,7 +119,7 @@ public class SceneController : MonoBehaviour
 
         if (uniqueCount > 1) //две и более девушки в меньшинстве
         {
-            LaunchGirl();
+            LaunchGirl(selectGirl.name);
         }
         else if (minCount < girlCount[selectGirl.name]) //это не меньшинство
         {

@@ -14,7 +14,7 @@ public class GirlController : MonoBehaviour
         collider = GetComponent<Collider2D>();
 
 		var pos = transform.localPosition;
-		pos.z = pos.y ;
+		pos.z = pos.y +10f;
 		transform.localPosition = pos;
     }
 
@@ -32,7 +32,8 @@ public class GirlController : MonoBehaviour
         {
             TurnRound();
             pos.x += velocity * Time.deltaTime;
-            pos.z = pos.y ;
+            if (Random.value < 0.5f) pos.z += Random.Range(-0.2f, 0.2f);
+
             transform.localPosition = pos;
         }
     }
