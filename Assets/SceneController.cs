@@ -162,7 +162,7 @@ public class SceneController : MonoBehaviour
 
         var minCnt = girlCount.Values.Count(n=>n==min);
 
-        countText.text = string.Format("{0}/{1}", minCnt, sum);
+		countText.text = string.Format("Unique girls in the club - {0}\nTotal girls - {1}", minCnt, sum);
 
     }
 }
