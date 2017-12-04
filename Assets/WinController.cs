@@ -11,6 +11,11 @@ public class WinController : MonoBehaviour
         return SceneManager.LoadSceneAsync("win");
     }
 
+    public static AsyncOperation LoseGame()
+    {
+        return SceneManager.LoadSceneAsync("lose");
+    }
+
     private void Awake()
     {
         screenBtn.onClick.AddListener(OnClick);

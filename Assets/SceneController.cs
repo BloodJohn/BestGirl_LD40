@@ -151,7 +151,7 @@ public class SceneController : MonoBehaviour
 
         if (girlCount.Values.Sum() >= maxGirl) //девушек стало слишком ного - начинаем заново!
         {
-            StartGame();
+            WinController.LoseGame();
         }
     }
 
