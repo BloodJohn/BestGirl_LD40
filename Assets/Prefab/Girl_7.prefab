@@ -403,7 +403,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1089803585167880}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.78, y: 17.99, z: 0}
+  m_LocalPosition: {x: 8.907963, y: -4.9655833, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4784630763357420}
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.6178301
+  m_Length: 0.6178296
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4246199656590580}
   m_AttachedIK: {fileID: 0}
@@ -778,7 +778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteMesh: {fileID: 11400000, guid: abba5180ce8dcac4a8c9de5b91c9b5a8, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.516, b: 0.20588237, a: 1}
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: 0
@@ -814,7 +814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.77930725
+  m_Length: 0.77930826
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4107652785455446}
   m_AttachedIK: {fileID: 0}
@@ -830,7 +830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.72519344
+  m_Length: 0.72519255
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4889476909296368}
   m_AttachedIK: {fileID: 0}
