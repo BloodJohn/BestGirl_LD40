@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class SceneController : MonoBehaviour
@@ -11,6 +12,7 @@ public class SceneController : MonoBehaviour
     private const float launchDelay = 2.0011f * 2;
 
     [SerializeField] private GameObject[] prefabList;
+    [SerializeField] private Text countText;
     private Camera mainCamera;
 
     private readonly Dictionary<string, int> girlCount = new Dictionary<string, int>(4);
@@ -36,6 +38,7 @@ public class SceneController : MonoBehaviour
         }
 
         for (var i = 0; i < 4; i++) LaunchGirl();
+        UpdateCounter();
     }
 
     void Update()
@@ -67,6 +70,7 @@ public class SceneController : MonoBehaviour
                 {
                     LaunchGirl();
                     SoundManager.Instance.PlayHello();
+                    UpdateCounter();
                 }
                 else
                 {
@@ -123,11 +127,14 @@ public class SceneController : MonoBehaviour
             LaunchGirl(selectGirl.name);
             LaunchGirl();
             SoundManager.Instance.PlayHello();
+            selectGirl.GetComponent<GirlController>().TurnRound();
+            UpdateCounter();
         }
         else if (minCount < girlCount[selectGirl.name]) //это не меньшинство
         {
             LaunchGirl();
             SoundManager.Instance.PlayHello();
+            UpdateCounter();
         }
         else //самая неповторимая!
         {
@@ -146,5 +153,16 @@ public class SceneController : MonoBehaviour
         {
             StartGame();
         }
+    }
+
+    private void UpdateCounter()
+    {
+        var sum = girlCount.Values.Sum();
+        var min = girlCount.Values.Min();
+
+        var minCnt = girlCount.Values.Count(n=>n==min);
+
+        countText.text = string.Format("{0}/{1}", minCnt, sum);
+
     }
 }
