@@ -45,8 +45,7 @@ public class SceneController : MonoBehaviour
     {
         if (isWin) //перезапускаем игру после победы
         {
-            if (Input.GetMouseButtonDown(0))
-                WinController.WinGame();
+            if (Input.GetMouseButtonDown(0)) WinController.WinGame();
             return;
         }
 
@@ -56,31 +55,64 @@ public class SceneController : MonoBehaviour
         {
             Vector2 mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             var hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
-            if (hit.transform != null)
-            {
-                CheckChange(hit.transform.gameObject);
-            }
-
+            if (hit.transform != null) CheckChange(hit.transform.gameObject);
         }
-        else
+        else if (launchTime > launchDelay) //со временем девушек прибывает
         {
-            if (launchTime > launchDelay) //со временем девушек прибывает
+            if (girlCount.Values.Sum() < maxGirl)
             {
-                if (girlCount.Values.Sum() < maxGirl)
-                {
-                    LaunchGirl();
-                    SoundManager.Instance.PlayHello();
-                    UpdateCounter();
-                }
-                else
-                {
-                    Debug.LogFormat("lose! :(");
-                    launchTime = float.MinValue;
-                }
+                LaunchGirl();
+                SoundManager.Instance.PlayHello();
+                UpdateCounter();
+            }
+            else
+            {
+                Debug.LogFormat("lose! :(");
+                launchTime = float.MinValue;
             }
         }
     }
 
+    private void CheckChange(GameObject selectGirl)
+    {
+        var minCount = girlCount.Values.Min();
+
+        if (minCount >= girlCount[selectGirl.name])
+        {
+            var uniqueCount = girlCount.Values.Count(g => g == minCount);
+            if (uniqueCount > 1) //две и более девушки в меньшинстве
+            {
+                LaunchGirl(selectGirl.name);
+                LaunchGirl();
+                SoundManager.Instance.PlayHello();
+                selectGirl.GetComponent<GirlController>().TurnRound();
+                UpdateCounter();
+            }
+            else //самая неповторимая!
+            {
+                Debug.LogFormat("win! :)");
+                SoundManager.Instance.PlayYeah();
+
+                foreach (var girl in FindObjectsOfType<GirlController>())
+                    girl.gameObject.SetActive(false);
+
+                selectGirl.SetActive(true);
+                isWin = true;
+                return;
+            }
+        }
+        else if (minCount < girlCount[selectGirl.name]) //это не меньшинство
+        {
+            LaunchGirl();
+            SoundManager.Instance.PlayHello();
+            UpdateCounter();
+        }
+
+        if (girlCount.Values.Sum() >= maxGirl) //девушек стало слишком ного - начинаем заново!
+        {
+            WinController.LoseGame();
+        }
+    }
 
     private void LaunchGirl(string prefabName = "")
     {
@@ -100,7 +132,7 @@ public class SceneController : MonoBehaviour
         newGirl.name = prefab.name;
 
         //разбрасываем по экрану
-        var pos = new Vector3(Random.Range(-3f, 3f), Random.Range(-8f, 4f), 0);
+        var pos = new Vector3(Random.Range(-3f, 3f), Random.Range(-10f, 4f), 0);
         newGirl.transform.localPosition = pos;
 
         var controller = newGirl.GetComponent<GirlController>();
@@ -115,54 +147,13 @@ public class SceneController : MonoBehaviour
         girlCount[prefab.name]++;
     }
 
-    private void CheckChange(GameObject selectGirl)
-    {
-        var minCount = girlCount.Values.Min();
-        var uniqueCount = girlCount.Values.Count(g => g == minCount);
-
-        Debug.LogFormat("click {0} ({1}/{2}x{3})", selectGirl.name, girlCount[selectGirl.name], minCount, uniqueCount);
-
-        if (uniqueCount > 1) //две и более девушки в меньшинстве
-        {
-            LaunchGirl(selectGirl.name);
-            LaunchGirl();
-            SoundManager.Instance.PlayHello();
-            selectGirl.GetComponent<GirlController>().TurnRound();
-            UpdateCounter();
-        }
-        else if (minCount < girlCount[selectGirl.name]) //это не меньшинство
-        {
-            LaunchGirl();
-            SoundManager.Instance.PlayHello();
-            UpdateCounter();
-        }
-        else //самая неповторимая!
-        {
-            Debug.LogFormat("win! :)");
-            SoundManager.Instance.PlayYeah();
-
-            foreach (var girl in FindObjectsOfType<GirlController>())
-                girl.gameObject.SetActive(false);
-
-            selectGirl.SetActive(true);
-            isWin = true;
-            return;
-        }
-
-        if (girlCount.Values.Sum() >= maxGirl) //девушек стало слишком ного - начинаем заново!
-        {
-            WinController.LoseGame();
-        }
-    }
-
     private void UpdateCounter()
     {
         var sum = girlCount.Values.Sum();
         var min = girlCount.Values.Min();
 
-        var minCnt = girlCount.Values.Count(n=>n==min);
+        var minCnt = girlCount.Values.Count(n => n == min);
 
-		countText.text = string.Format("Unique girls in the club - {0}\nTotal girls - {1}", minCnt, sum);
-
+        countText.text = string.Format("Unique girls in the club - {0}\nTotal girls - {1}/{2}", minCnt, sum, maxGirl);
     }
 }
